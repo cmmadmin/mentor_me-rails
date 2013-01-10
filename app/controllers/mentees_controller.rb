@@ -3,70 +3,47 @@ class MenteesController < ApplicationController
   # GET /mentees.json
   def index
     @mentees = Mentee.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @mentees }
-    end
+    respond_with @mentees
   end
 
   # GET /mentees/1
   # GET /mentees/1.json
   def show
     @mentee = Mentee.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @mentee }
-    end
+    respond_with @mentee
   end
 
   # GET /mentees/new
   # GET /mentees/new.json
   def new
     @mentee = Mentee.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @mentee }
-    end
+    respond_with @mentee
   end
 
   # GET /mentees/1/edit
   def edit
     @mentee = Mentee.find(params[:id])
+    respond_with @mentee
   end
 
   # POST /mentees
   # POST /mentees.json
   def create
     @mentee = Mentee.new(params[:mentee])
-
-    respond_to do |format|
-      if @mentee.save
-        format.html { redirect_to @mentee, notice: 'Mentee was successfully created.' }
-        format.json { render json: @mentee, status: :created, location: @mentee }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @mentee.errors, status: :unprocessable_entity }
-      end
+    if @mentee.save
+      flash[:notice] = "Mentee successfully created."
     end
+    respond_with @mentee, :location => users_url
   end
 
   # PUT /mentees/1
   # PUT /mentees/1.json
   def update
     @mentee = Mentee.find(params[:id])
-
-    respond_to do |format|
-      if @mentee.update_attributes(params[:mentee])
-        format.html { redirect_to @mentee, notice: 'Mentee was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @mentee.errors, status: :unprocessable_entity }
-      end
+    if @mentee.update_attributes(params[:mentee])
+      flash[:notice] = "Mentee was successfully updated."
     end
+    respond_with(@mentee)
   end
 
   # DELETE /mentees/1
@@ -74,10 +51,8 @@ class MenteesController < ApplicationController
   def destroy
     @mentee = Mentee.find(params[:id])
     @mentee.destroy
+    flash[:notice] = "Mentee was successfully destroyed."
 
-    respond_to do |format|
-      format.html { redirect_to mentees_url }
-      format.json { head :no_content }
-    end
+    respond_with @mentee
   end
 end
