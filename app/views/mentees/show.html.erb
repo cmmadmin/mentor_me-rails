@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @mentee.name %>
+</p>
+
+<p>
+  <b>Birth date:</b>
+  <%= @mentee.birth_date %>
+</p>
+
+<p>
+  <b>Major:</b>
+  <%= @mentee.major %>
+</p>
+
+<p>
+  <b>Phone:</b>
+  <%= @mentee.phone %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @mentee.email %>
+</p>
+
+
+<%= link_to 'Edit', edit_mentee_path(@mentee) %> |
+<%= link_to 'Back', mentees_path %>
