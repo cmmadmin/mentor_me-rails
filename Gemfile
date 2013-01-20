@@ -22,17 +22,30 @@ end
 
 gem 'jquery-rails'
 
+# JSON Parsing and Templating
+gem 'rabl'
+gem 'oj'
+gem 'multi_json'
+
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
 
-# Use unicorn as the app server
-# gem 'unicorn'
-
 # Deploy with Capistrano
 # gem 'capistrano'
 
 # To use debugger
 # gem 'debugger'
+
+group :development do
+  # Use unicorn as the app server
+  gem 'unicorn'
+  # Unicorn rack handler for rails s
+  gem 'hooves'
+  gem 'rack-cors', :require => 'rack/cors'
+
+  gem 'pry'
+end

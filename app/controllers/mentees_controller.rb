@@ -1,4 +1,5 @@
 class MenteesController < ApplicationController
+  respond_to :json, :html
   # GET /mentees
   # GET /mentees.json
   def index
@@ -33,7 +34,7 @@ class MenteesController < ApplicationController
     if @mentee.save
       flash[:notice] = "Mentee successfully created."
     end
-    respond_with @mentee, :location => users_url
+    respond_with @mentee, :location => mentees_url
   end
 
   # PUT /mentees/1

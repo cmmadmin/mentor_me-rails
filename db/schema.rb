@@ -23,4 +23,9 @@ ActiveRecord::Schema.define(:version => 20121224042924) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "testings", :force => true do |t|
+    t.string "name"
+    t.belongs_to :mentee
+  end
+
 end
