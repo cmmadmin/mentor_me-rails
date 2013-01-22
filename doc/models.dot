@@ -1,0 +1,4 @@
+digraph models_diagram {
+	graph[overlap=false, splines=true]
+	"Mentee" [shape=Mrecord, label="{Mentee|id :integer\lname :string\lbirth_date :date\lmajor :string\lphone :string\lemail :string\lcreated_at :datetime\lupdated_at :datetime\l}"]
+}

@@ -76,6 +76,7 @@ GEM
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
+    railroady (1.1.0)
     rails (3.2.11)
       actionmailer (= 3.2.11)
       actionpack (= 3.2.11)
@@ -133,6 +134,7 @@ DEPENDENCIES
   pry
   rabl
   rack-cors
+  railroady
   rails (= 3.2.11)
   sass-rails (~> 3.2.3)
   sqlite3

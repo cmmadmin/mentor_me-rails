@@ -47,5 +47,9 @@ group :development do
   gem 'hooves'
   gem 'rack-cors', :require => 'rack/cors'
 
+  gem 'railroady'
+end
+
+group :development, :test do
   gem 'pry'
 end
