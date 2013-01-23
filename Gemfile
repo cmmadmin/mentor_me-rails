@@ -27,6 +27,12 @@ gem 'rabl'
 gem 'oj'
 gem 'multi_json'
 
+# Authentication and Authorization
+gem 'devise', '2.1.0'
+
+# DB Gems
+gem 'foreigner'
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -48,6 +54,8 @@ group :development do
   gem 'rack-cors', :require => 'rack/cors'
 
   gem 'railroady'
+
+  gem "letter_opener"
 end
 
 group :development, :test do

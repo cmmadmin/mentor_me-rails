@@ -1,6 +1,13 @@
 MentorMeRails::Application.routes.draw do
+  devise_for :users
+
+  devise_scope :user do
+    get '/users/sign_out' => 'devise/sessions#destroy'
+  end
+
   resources :mentees
 
+  root :to => "mentees#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
