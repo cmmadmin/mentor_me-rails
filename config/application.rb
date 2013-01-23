@@ -59,6 +59,11 @@ module MentorMeRails
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
+    config.generators do |g|
+      g.template_engine :haml
+      g.test_framework :rspec
+    end
+
     # TODO: Set origins appropriately
     config.middleware.insert_before Warden::Manager, Rack::Cors do
       allow do

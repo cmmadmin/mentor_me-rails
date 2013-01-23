@@ -21,6 +21,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'haml'
 
 # JSON Parsing and Templating
 gem 'rabl'
@@ -29,6 +30,9 @@ gem 'multi_json'
 
 # Authentication and Authorization
 gem 'devise', '2.1.0'
+
+# Controller helper
+gem 'inherited_resources'
 
 # DB Gems
 gem 'foreigner'
@@ -60,4 +64,6 @@ end
 
 group :development, :test do
   gem 'pry'
+
+  gem 'rspec-rails'
 end
