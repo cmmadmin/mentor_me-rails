@@ -1,0 +1,19 @@
+%h1 Listing journal_entries
+
+%table
+  %tr
+    %th Body
+    %th
+    %th
+    %th
+
+  - @journal_entries.each do |journal_entry|
+    %tr
+      %td= journal_entry.body
+      %td= link_to 'Show', [@mentee, journal_entry]
+      %td= link_to 'Edit', edit_mentee_journal_entry_path(@mentee, journal_entry)
+      %td= link_to 'Destroy', [@mentee, journal_entry], method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Journal entry', new_mentee_journal_entry_path

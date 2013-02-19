@@ -62,13 +62,14 @@ module MentorMeRails
     config.generators do |g|
       g.template_engine :haml
       g.test_framework :rspec
+      g.fixture_replacement :factory_girl, :dir => 'spec/factories'
     end
 
     # TODO: Set origins appropriately
     config.middleware.insert_before Warden::Manager, Rack::Cors do
       allow do
         origins '*'
-        resource '*', :headers => :any, :methods => [:get, :post, :options]
+        resource '*', :headers => :any, :methods => [:get, :post, :options, :put, :delete]
       end
     end
 

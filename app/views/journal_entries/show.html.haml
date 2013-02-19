@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Body:
+  = @journal_entry.body
+
+= link_to 'Edit', edit_mentee_journal_entry_path(@journal_entry)
+\|
+= link_to 'Back', mentee_journal_entries_path

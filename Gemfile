@@ -22,6 +22,7 @@ end
 
 gem 'jquery-rails'
 gem 'haml'
+gem 'haml-rails'
 
 # JSON Parsing and Templating
 gem 'rabl'
@@ -33,6 +34,11 @@ gem 'devise', '2.1.0'
 
 # Controller helper
 gem 'inherited_resources'
+gem 'simple_form'
+
+#gem "therubyracer"
+#gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+gem "twitter-bootstrap-rails"
 
 # DB Gems
 gem 'foreigner'
@@ -66,4 +72,7 @@ group :development, :test do
   gem 'pry'
 
   gem 'rspec-rails'
+
+  gem 'factory_girl', '~> 4.1.0'
+  gem 'factory_girl_rails', '~> 4.1.0'
 end
