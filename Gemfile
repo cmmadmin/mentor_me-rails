@@ -28,6 +28,7 @@ gem 'multi_json'
 
 # Authentication and Authorization
 gem 'devise', '2.1.0'
+gem 'rack-cors', :require => 'rack/cors'
 
 # Controller helper
 gem 'inherited_resources'
@@ -40,7 +41,7 @@ gem "twitter-bootstrap-rails"
 # DB Gems
 gem 'foreigner'
 
-gem 'mysql2'
+gem 'pg'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -59,7 +60,6 @@ group :development do
   gem 'unicorn'
   # Unicorn rack handler for rails s
   gem 'hooves'
-  gem 'rack-cors', :require => 'rack/cors'
 
   gem 'railroady'
 
@@ -67,6 +67,8 @@ group :development do
 end
 
 group :development, :test do
+  gem 'mysql2'
+
   gem 'pry'
 
   gem 'rspec-rails'
