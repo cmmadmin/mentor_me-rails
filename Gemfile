@@ -39,6 +39,7 @@ gem 'simple_form'
 gem "twitter-bootstrap-rails"
 
 gem "enumerize"
+gem 'rails_admin'
 
 # DB Gems
 gem 'foreigner'
