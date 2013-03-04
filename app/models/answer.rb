@@ -3,7 +3,8 @@ class Answer < ActiveRecord::Base
 
   attr_accessible :text_value, :number_value, :boolean_value
 
-  belongs_to :mentee, :question
+  belongs_to :mentee
+  belongs_to :question
 
 
   def value
