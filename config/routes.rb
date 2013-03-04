@@ -9,6 +9,8 @@ MentorMeRails::Application.routes.draw do
   resources :mentees do
     resources :journal_entries
   end
+
+  resources :questions
     
   root :to => "mentees#index"
 
