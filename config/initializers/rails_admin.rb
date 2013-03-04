@@ -54,21 +54,27 @@ RailsAdmin.config do |config|
 
   ###  Answer  ###
 
-  # config.model 'Answer' do
+  config.model 'Answer' do
 
   #   # You can copy this to a 'rails_admin do ... end' block inside your answer.rb model definition
 
   #   # Found associations:
+  #    d
+    configure :boolean_value, :enum do
+      enum do
+        [true, false]
+      end
+    end
 
-  #     configure :question, :belongs_to_association 
-  #     configure :mentee, :belongs_to_association 
+    configure :question, :belongs_to_association 
+    configure :mentee, :belongs_to_association 
 
   #   # Found columns:
 
   #     configure :id, :integer 
-  #     configure :text_value, :text 
-  #     configure :number_value, :integer 
-  #     configure :boolean_value, :boolean 
+      
+    
+
   #     configure :question_id, :integer         # Hidden 
   #     configure :mentee_id, :integer         # Hidden 
   #     configure :created_at, :datetime 
@@ -80,7 +86,7 @@ RailsAdmin.config do |config|
   #     # label 'My model'              # Name of ModelName (smartly defaults to ActiveRecord's I18n API)
   #     # label_plural 'My models'      # Same, plural
   #     # weight 0                      # Navigation priority. Bigger is higher.
-  #     # parent OtherModel             # Set parent model for navigation. MyModel will be nested below. OtherModel will be on first position of the dropdown
+    parent Mentee             # Set parent model for navigation. MyModel will be nested below. OtherModel will be on first position of the dropdown
   #     # navigation_label              # Sets dropdown entry's name in navigation. Only for parents!
 
   #   # Section specific configuration:
@@ -97,18 +103,18 @@ RailsAdmin.config do |config|
   #     # also see the create, update, modal and nested sections, which override edit in specific cases (resp. when creating, updating, modifying from another model in a popup modal or modifying from another model nested form)
   #     # you can override a cross-section field configuration in any section with the same syntax `configure :field_name do ... end`
   #     # using `field` instead of `configure` will exclude all other fields and force the ordering
-  # end
+  end
 
 
   ###  JournalEntry  ###
 
-  # config.model 'JournalEntry' do
+  config.model 'JournalEntry' do
 
   #   # You can copy this to a 'rails_admin do ... end' block inside your journal_entry.rb model definition
 
   #   # Found associations:
 
-  #     configure :mentee, :belongs_to_association 
+    configure :mentee, :belongs_to_association 
 
   #   # Found columns:
 
@@ -124,7 +130,7 @@ RailsAdmin.config do |config|
   #     # label 'My model'              # Name of ModelName (smartly defaults to ActiveRecord's I18n API)
   #     # label_plural 'My models'      # Same, plural
   #     # weight 0                      # Navigation priority. Bigger is higher.
-  #     # parent OtherModel             # Set parent model for navigation. MyModel will be nested below. OtherModel will be on first position of the dropdown
+    parent Mentee             # Set parent model for navigation. MyModel will be nested below. OtherModel will be on first position of the dropdown
   #     # navigation_label              # Sets dropdown entry's name in navigation. Only for parents!
 
   #   # Section specific configuration:
@@ -141,19 +147,19 @@ RailsAdmin.config do |config|
   #     # also see the create, update, modal and nested sections, which override edit in specific cases (resp. when creating, updating, modifying from another model in a popup modal or modifying from another model nested form)
   #     # you can override a cross-section field configuration in any section with the same syntax `configure :field_name do ... end`
   #     # using `field` instead of `configure` will exclude all other fields and force the ordering
-  # end
+  end
 
 
   ###  Mentee  ###
 
-  # config.model 'Mentee' do
+  config.model 'Mentee' do
 
   #   # You can copy this to a 'rails_admin do ... end' block inside your mentee.rb model definition
 
   #   # Found associations:
 
-  #     configure :mentor, :belongs_to_association 
-  #     configure :journal_entries, :has_many_association 
+    configure :mentor, :belongs_to_association 
+    configure :journal_entries, :has_many_association 
 
   #   # Found columns:
 
@@ -191,12 +197,15 @@ RailsAdmin.config do |config|
   #     # also see the create, update, modal and nested sections, which override edit in specific cases (resp. when creating, updating, modifying from another model in a popup modal or modifying from another model nested form)
   #     # you can override a cross-section field configuration in any section with the same syntax `configure :field_name do ... end`
   #     # using `field` instead of `configure` will exclude all other fields and force the ordering
-  # end
+  end
 
 
   ###  Question  ###
 
   config.model 'Question' do
+    object_label_method do
+      :body
+    end
 
   #   # You can copy this to a 'rails_admin do ... end' block inside your question.rb model definition
 
@@ -208,8 +217,8 @@ RailsAdmin.config do |config|
 
   #     configure :id, :integer 
   #     configure :body, :text 
-      configure :develop_category, :enum
-      configure :answer_type, :enum
+    configure :develop_category, :enum
+    configure :answer_type, :enum
   #     configure :created_at, :datetime 
   #     configure :updated_at, :datetime 
 

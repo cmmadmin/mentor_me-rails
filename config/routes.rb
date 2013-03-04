@@ -14,7 +14,7 @@ MentorMeRails::Application.routes.draw do
 
   resources :questions
     
-  root :to => "mentees#index"
+  #root :to => "rails_admin/main#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -17,6 +17,8 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'andand'
+
 gem 'jquery-rails'
 gem 'haml'
 gem 'haml-rails'
@@ -43,6 +45,7 @@ gem 'rails_admin'
 
 # DB Gems
 gem 'foreigner'
+gem "strip_attributes", "~> 1.2"
 
 gem 'pg'
 

@@ -3,4 +3,6 @@ class Mentee < ActiveRecord::Base
 
   belongs_to :mentor, :class_name => User
   has_many :journal_entries
+
+  validates :name, :presence => true
 end
