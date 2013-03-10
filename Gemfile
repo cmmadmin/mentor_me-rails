@@ -49,7 +49,7 @@ gem "enumerize"
 gem "strip_attributes", "~> 1.2"
 
 # DB Gems
-# gem 'pg'
+gem 'pg'
 gem 'foreigner'
 
 # Bootstrap / Admin
