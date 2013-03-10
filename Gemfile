@@ -32,22 +32,29 @@ gem 'multi_json'
 gem 'devise', '2.1.0'
 gem 'rack-cors', :require => 'rack/cors'
 
+# File Processing
+gem 'carrierwave'  
+gem "mini_magick"
+gem "fog"
+
 # Controller helper
 gem 'inherited_resources'
 gem 'simple_form'
 
 #gem "therubyracer"
 #gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
-gem "twitter-bootstrap-rails"
 
+# Model Addons
 gem "enumerize"
-gem 'rails_admin'
-
-# DB Gems
-gem 'foreigner'
 gem "strip_attributes", "~> 1.2"
 
-gem 'pg'
+# DB Gems
+# gem 'pg'
+gem 'foreigner'
+
+# Bootstrap / Admin
+gem "twitter-bootstrap-rails"
+gem 'rails_admin'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
