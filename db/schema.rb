@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(:version => 20130310054420) do
     t.datetime "updated_at", :null => false
   end
 
+  add_index "journal_entries", ["mentee_id"], :name => "journal_entries_mentee_id_fk"
+
   create_table "mentees", :force => true do |t|
     t.string   "name"
     t.date     "birth_date"
@@ -42,6 +44,8 @@ ActiveRecord::Schema.define(:version => 20130310054420) do
     t.text     "notes"
     t.string   "avatar"
   end
+
+  add_index "mentees", ["mentor_id"], :name => "mentees_mentor_id_fk"
 
   create_table "questions", :force => true do |t|
     t.text     "body"
@@ -64,11 +68,6 @@ ActiveRecord::Schema.define(:version => 20130310054420) do
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
 
-  create_table "testings", :force => true do |t|
-    t.string  "name"
-    t.integer "mentee_id"
-  end
-
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
@@ -86,5 +85,9 @@ ActiveRecord::Schema.define(:version => 20130310054420) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  add_foreign_key "journal_entries", "mentees", :name => "journal_entries_mentee_id_fk"
+
+  add_foreign_key "mentees", "users", :name => "mentees_mentor_id_fk", :column => "mentor_id"
 
 end

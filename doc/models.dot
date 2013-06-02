@@ -1,4 +1,10 @@
 digraph models_diagram {
 	graph[overlap=false, splines=true]
-	"Mentee" [shape=Mrecord, label="{Mentee|id :integer\lname :string\lbirth_date :date\lmajor :string\lphone :string\lemail :string\lcreated_at :datetime\lupdated_at :datetime\l}"]
+	"Answer" [shape=Mrecord, label="{Answer|id :integer\ltext_value :text\lnumber_value :integer\lboolean_value :boolean\lquestion_id :integer\lmentee_id :integer\lcreated_at :datetime\lupdated_at :datetime\l}"]
+	"JournalEntry" [shape=Mrecord, label="{JournalEntry|id :integer\lbody :text\lmentee_id :integer\lcreated_at :datetime\lupdated_at :datetime\l}"]
+	"Mentee" [shape=Mrecord, label="{Mentee|id :integer\lname :string\lbirth_date :date\lmajor :string\lphone :string\lemail :string\lcreated_at :datetime\lupdated_at :datetime\lmentor_id :integer\lnotes :text\lavatar :string\l}"]
+	"Question" [shape=Mrecord, label="{Question|id :integer\lbody :text\ldevelop_category :string\lanswer_type :string\lcreated_at :datetime\lupdated_at :datetime\l}"]
+	"User" [shape=Mrecord, label="{User|id :integer\lemail :string\lencrypted_password :string\lreset_password_token :string\lreset_password_sent_at :datetime\lremember_created_at :datetime\lsign_in_count :integer\lcurrent_sign_in_at :datetime\llast_sign_in_at :datetime\lcurrent_sign_in_ip :string\llast_sign_in_ip :string\lcreated_at :datetime\lupdated_at :datetime\l}"]
+	"Mentee" -> "JournalEntry" [arrowtail=odot, arrowhead=crow, dir=both color="#59C305"]
+	"User" -> "Mentee" [arrowtail=odot, arrowhead=crow, dir=both color="#4BE19E"]
 }

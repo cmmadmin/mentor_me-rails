@@ -2,6 +2,8 @@
 
 FactoryGirl.define do
   factory :question do
-    body "MyText"
+    body { Faker::Lorem.paragraph }
+    develop_category { [:snapshot, :develop, :lifelist].sample }
+    answer_type :text
   end
 end

@@ -77,15 +77,34 @@ group :development do
   gem 'railroady'
 
   gem "letter_opener"
+
+  # Speed and testing Tools (not needed on testing/integration server)
+  gem 'guard'
+  gem 'rb-fsevent'
+  gem 'zeus'
+  gem 'guard-rspec'
+
 end
 
 group :development, :test do
   gem 'mysql2'
 
+  # Debugger and REPL
   gem 'pry'
+  gem 'pry-stack_explorer'
+  gem 'pry-debugger'
 
-  gem 'rspec-rails'
+  gem 'rspec'
+  gem 'rspec-rails', ">= 2.0"
+  gem 'shoulda-matchers'
+  gem 'factory_girl', ">= 4.2.0"
+  gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'poltergeist'
+  gem 'rr'
+  gem 'ffaker'
+  gem 'database_cleaner'
 
-  gem 'factory_girl', '~> 4.1.0'
-  gem 'factory_girl_rails', '~> 4.1.0'
+  gem 'ruby_gntp'
+  gem 'fuubar'
 end
