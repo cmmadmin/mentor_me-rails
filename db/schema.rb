@@ -11,26 +11,39 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130310054420) do
+ActiveRecord::Schema.define(:version => 20130712100000) do
 
   create_table "answers", :force => true do |t|
     t.text     "text_value"
     t.integer  "number_value"
     t.boolean  "boolean_value"
-    t.integer  "question_id"
-    t.integer  "mentee_id"
+    t.boolean  "not_applicable"
+    t.integer  "question_id",   :null => false
+    t.integer  "mentee_profile_id",    :null => false
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end
+  
 
+  create_table "editions", :force => true do |t|
+    t.string   "name",          :null => false
+    t.string   "code",          :null => false
+    t.integer  "revision"
+    t.integer  "snapshot_self_assessment_survey_id"
+    t.integer  "snapshot_interactive_survey_id"
+    t.integer  "snapshot_observations_survey_id"
+    t.integer  "develop_survey_id"
+    t.integer  "life_list_id"
+    t.timestamps
+  end
+  
   create_table "journal_entries", :force => true do |t|
-    t.text     "body"
-    t.integer  "mentee_id"
+    t.text     "body",       :null => false
+    t.integer  "mentee_id",  :null => false
+    t.datetime "logged_at",  :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
-
-  add_index "journal_entries", ["mentee_id"], :name => "journal_entries_mentee_id_fk"
 
   create_table "mentees", :force => true do |t|
     t.string   "name"
@@ -45,14 +58,27 @@ ActiveRecord::Schema.define(:version => 20130310054420) do
     t.string   "avatar"
   end
 
-  add_index "mentees", ["mentor_id"], :name => "mentees_mentor_id_fk"
+  create_table "mentee_profiles", :force => true do |t|
+    t.integer  "edition_id",  :null => false
+    t.integer  "mentee_id",   :null => false
+    t.timestamps
+  end
+
+  create_table "question_groups", :force => true do |t|
+    t.string     "title"
+    t.boolean    "virtual"
+    t.integer    "survey_id",        :null => false
+    t.integer    "position",         :null => false
+    t.timestamps
+  end
 
   create_table "questions", :force => true do |t|
-    t.text     "body"
-    t.string   "develop_category"
-    t.string   "answer_type"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.text       "body",             :null => false
+    t.string     "question_type",    :null => false
+    t.integer    "group_id",         :null => false
+    t.integer    "position",         :null => false
+    
+    t.timestamps
   end
 
   create_table "rails_admin_histories", :force => true do |t|
@@ -67,6 +93,17 @@ ActiveRecord::Schema.define(:version => 20130310054420) do
   end
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
+
+  create_table "surveys", :force => true do |t|
+    t.integer "edition_id", :null => false
+    t.integer "default_question_group_id"
+    t.timestamps
+  end
+
+  create_table "testings", :force => true do |t|
+    t.string  "name"
+    t.integer "mentee_id"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -86,8 +123,13 @@ ActiveRecord::Schema.define(:version => 20130310054420) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
-  add_foreign_key "journal_entries", "mentees", :name => "journal_entries_mentee_id_fk"
 
-  add_foreign_key "mentees", "users", :name => "mentees_mentor_id_fk", :column => "mentor_id"
+  add_foreign_key :answers, :questions
+  add_foreign_key :answers, :mentee_profiles
+
+  add_foreign_key :editions, :surveys, column: 'snapshot_self_assessment_survey_id', name: 'edition_self_assessment_survey_foreign_key'
+  add_foreign_key :editions, :surveys, column: 'snapshot_interactive_survey_id', name: 'edition_interactive_survey_foreign_key'
+  add_foreign_key :editions, :surveys, column: 'snapshot_observations_survey_id', name: 'edition_observations_survey_foreign_key'
+  add_foreign_key :editions, :surveys, column: 'develop_survey_id', name: 'develop_survey_foreign_key'
 
 end

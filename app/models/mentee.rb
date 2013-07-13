@@ -7,6 +7,7 @@ class Mentee < ActiveRecord::Base
 
   belongs_to :mentor, :class_name => User
   has_many :journal_entries
+  has_many :mentee_profiles
 
   validates :name, :presence => true
 end

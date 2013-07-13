@@ -1,12 +1,12 @@
 class Answer < ActiveRecord::Base
   extend Enumerize
 
-  attr_accessible :text_value, :number_value, :boolean_value, :mentee_id, :question_id
+  attr_accessible :text_value, :number_value, :boolean_value, :mentee_profile_id, :question_id
 
-  belongs_to :mentee
+  belongs_to :mentee_profile
   belongs_to :question
 
-  validates :mentee, :presence => true
+  validates :mentee_profile, :presence => true
   validates :question, :presence => true
   validates :number_value, :numericality => true, :allow_nil => true
   validates :boolean_value, :inclusion => { :in => [true, false] }, :allow_nil => true

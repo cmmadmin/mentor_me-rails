@@ -87,7 +87,6 @@ group :development do
 end
 
 group :development, :test do
-  gem 'mysql2'
 
   # Debugger and REPL
   gem 'pry'
