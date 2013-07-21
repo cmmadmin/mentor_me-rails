@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(:version => 20130712100000) do
   create_table "questions", :force => true do |t|
     t.text       "body",             :null => false
     t.string     "question_type",    :null => false
-    t.integer    "group_id",         :null => false
+    t.integer    "question_group_id",         :null => false
     t.integer    "position",         :null => false
     
     t.timestamps

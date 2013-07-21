@@ -1,17 +1,37 @@
 MentorMeRails::Application.routes.draw do
 
+  
+
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+
   devise_for :users
 
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
 
-  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+  # shallow do
+  #   resources :mentees do
+  #     resources :journal_entries
+  #     resources :mentee_profiles do
+  #       resources :answers
+  #     end
+  #   end
+  #   resources :editions
+  #   resources :surveys do
+  #     resources :question_groups do
+  #       resources :questions
+  #     end
+  #   end
+  # end
 
-  resources :mentees do
-    resources :journal_entries
-  end
-
+  resources :mentees
+  resources :journal_entries
+  resources :mentee_profiles
+  resources :answers
+  resources :editions
+  resources :surveys
+  resources :question_groups
   resources :questions
     
   #root :to => "rails_admin/main#index"
