@@ -11,29 +11,30 @@ MentorMeRails::Application.routes.draw do
     get '/users/data' => 'users#data'
   end
 
-  # shallow do
-  #   resources :mentees do
-  #     resources :journal_entries
-  #     resources :mentee_profiles do
-  #       resources :answers
-  #     end
-  #   end
-  #   resources :editions
-  #   resources :surveys do
-  #     resources :question_groups do
-  #       resources :questions
-  #     end
-  #   end
-  # end
+  shallow do
+    resources :mentees do
+      resources :journal_entries
+      resources :mentee_profiles do
+        resources :answers
+      end
+    end
+    resources :editions do
+      resources :surveys do
+        resources :question_groups do
+          resources :questions
+        end
+      end
+    end
+  end
 
-  resources :mentees
-  resources :journal_entries
-  resources :mentee_profiles
-  resources :answers
-  resources :editions
-  resources :surveys
-  resources :question_groups
-  resources :questions
+  # resources :mentees
+  # resources :journal_entries
+  # resources :mentee_profiles
+  # resources :answers
+  # resources :editions
+  # resources :surveys
+  # resources :question_groups
+  # resources :questions
     
   #root :to => "rails_admin/main#index"
 
