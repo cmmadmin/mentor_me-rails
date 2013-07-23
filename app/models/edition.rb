@@ -11,4 +11,9 @@ class Edition < ActiveRecord::Base
   has_many :surveys
   has_many :mentee_profiles
 
+  def self.used_by_mentor mentor
+    joins(:mentee_profiles => :mentee).
+   		where(:mentees => {:mentor_id => mentor.id}).group("editions.id")
+  end
+
 end
