@@ -16,4 +16,7 @@ class Edition < ActiveRecord::Base
    		where(:mentees => {:mentor_id => mentor.id}).group("editions.id")
   end
 
+  def self.default
+    where(:code => "college").first
+  end
 end
