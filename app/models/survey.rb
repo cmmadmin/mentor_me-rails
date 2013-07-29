@@ -1,5 +1,5 @@
 class Survey < ActiveRecord::Base
-  attr_accessible :edition_id, :default_question_group_id
+  attr_accessible :edition_id, :default_question_group_id, :question_group_ids
   
   belongs_to :edition
   belongs_to :default_question_group, :class_name => "QuestionGroup"

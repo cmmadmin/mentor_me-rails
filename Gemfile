@@ -47,6 +47,7 @@ gem 'simple_form'
 # Model Addons
 gem "enumerize"
 gem "strip_attributes", "~> 1.2"
+gem 'acts_as_list'
 
 # DB Gems
 gem 'pg'
@@ -55,6 +56,7 @@ gem 'foreigner'
 # Bootstrap / Admin
 gem "twitter-bootstrap-rails"
 gem 'rails_admin', '~> 0.4.9'
+gem 'rails_admin_nestable'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

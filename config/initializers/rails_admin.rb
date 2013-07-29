@@ -1,4 +1,4 @@
-# RailsAdmin config file. Generated on July 12, 2013 21:25
+# RailsAdmin config file. Generated on July 26, 2013 01:16
 # See github.com/sferik/rails_admin for more informations
 
 RailsAdmin.config do |config|
@@ -51,6 +51,25 @@ RailsAdmin.config do |config|
   # Anyway, here is how RailsAdmin saw your application's models when you ran the initializer:
 
 
+  config.actions do
+    # root actions
+    dashboard                     # mandatory
+    # collection actions
+    index                         # mandatory
+    new
+    export
+    history_index
+    bulk_delete
+    # member actions
+    show
+    edit
+    delete
+    history_show
+    show_in_app
+
+    # Add the nestable action for configured models
+    nestable
+  end
 
   ###  Answer  ###
 
@@ -203,15 +222,16 @@ RailsAdmin.config do |config|
 
   ###  Mentee  ###
 
-   config.model 'Mentee' do
+  # config.model 'Mentee' do
 
   #   # You can copy this to a 'rails_admin do ... end' block inside your mentee.rb model definition
 
   #   # Found associations:
 
-       configure :mentor, :belongs_to_association 
+  #     configure :mentor, :belongs_to_association 
   #     configure :journal_entries, :has_many_association 
   #     configure :mentee_profiles, :has_many_association 
+  #     configure :active_profile, :has_one_association 
 
   #   # Found columns:
 
@@ -250,12 +270,12 @@ RailsAdmin.config do |config|
   #     # also see the create, update, modal and nested sections, which override edit in specific cases (resp. when creating, updating, modifying from another model in a popup modal or modifying from another model nested form)
   #     # you can override a cross-section field configuration in any section with the same syntax `configure :field_name do ... end`
   #     # using `field` instead of `configure` will exclude all other fields and force the ordering
-   end
+  # end
 
 
   ###  MenteeProfile  ###
 
-  # config.model 'MenteeProfile' do
+  config.model 'MenteeProfile' do
 
   #   # You can copy this to a 'rails_admin do ... end' block inside your mentee_profile.rb model definition
 
@@ -279,7 +299,7 @@ RailsAdmin.config do |config|
   #     # label 'My model'              # Name of ModelName (smartly defaults to ActiveRecord's I18n API)
   #     # label_plural 'My models'      # Same, plural
   #     # weight 0                      # Navigation priority. Bigger is higher.
-  #     # parent OtherModel             # Set parent model for navigation. MyModel will be nested below. OtherModel will be on first position of the dropdown
+    parent Mentee             # Set parent model for navigation. MyModel will be nested below. OtherModel will be on first position of the dropdown
   #     # navigation_label              # Sets dropdown entry's name in navigation. Only for parents!
 
   #   # Section specific configuration:
@@ -296,7 +316,7 @@ RailsAdmin.config do |config|
   #     # also see the create, update, modal and nested sections, which override edit in specific cases (resp. when creating, updating, modifying from another model in a popup modal or modifying from another model nested form)
   #     # you can override a cross-section field configuration in any section with the same syntax `configure :field_name do ... end`
   #     # using `field` instead of `configure` will exclude all other fields and force the ordering
-  # end
+  end
 
 
   ###  Question  ###
@@ -307,22 +327,118 @@ RailsAdmin.config do |config|
 
   #   # Found associations:
 
+  #     configure :question_group, :belongs_to_association 
   #     configure :answers, :has_many_association 
 
   #   # Found columns:
 
   #     configure :id, :integer 
   #     configure :body, :text 
-  #     configure :question_type, :string 
-  #     configure :group_id, :integer 
+  #     configure :question_type, :enum 
+  #     configure :question_group_id, :integer         # Hidden 
   #     configure :position, :integer 
   #     configure :created_at, :datetime 
   #     configure :updated_at, :datetime 
-        configure :question_type, :enum
 
   #   # Cross-section configuration:
-  #   
-        object_label_method :body
+
+    object_label_method :body     # Name of the method called for pretty printing an *instance* of ModelName
+  #     # label 'My model'              # Name of ModelName (smartly defaults to ActiveRecord's I18n API)
+  #     # label_plural 'My models'      # Same, plural
+  #     # weight 0                      # Navigation priority. Bigger is higher.
+    parent QuestionGroup           # Set parent model for navigation. MyModel will be nested below. OtherModel will be on first position of the dropdown
+  #     # navigation_label              # Sets dropdown entry's name in navigation. Only for parents!
+    nestable_list true
+  #   # Section specific configuration:
+
+  #     list do
+  #       # filters [:id, :name]  # Array of field names which filters should be shown by default in the table header
+  #       # items_per_page 100    # Override default_items_per_page
+  #       # sort_by :id           # Sort column (default is primary key)
+  #       # sort_reverse true     # Sort direction (default is true for primary key, last created first)
+  #     end
+  #     show do; end
+  #     edit do; end
+  #     export do; end
+  #     # also see the create, update, modal and nested sections, which override edit in specific cases (resp. when creating, updating, modifying from another model in a popup modal or modifying from another model nested form)
+  #     # you can override a cross-section field configuration in any section with the same syntax `configure :field_name do ... end`
+  #     # using `field` instead of `configure` will exclude all other fields and force the ordering
+  end
+
+
+  ###  QuestionGroup  ###
+
+  config.model 'QuestionGroup' do
+      nestable_list true
+  #   # You can copy this to a 'rails_admin do ... end' block inside your question_group.rb model definition
+
+  #   # Found associations:
+
+      configure :survey, :belongs_to_association 
+      configure :questions, :has_many_association 
+
+  #   # Found columns:
+
+    field :id
+    field :title
+    field :virtual
+    field :survey
+    field :position
+  #     
+    field :questions do
+      orderable true
+    end
+
+  #   # Cross-section configuration:
+
+  #     # object_label_method :name     # Name of the method called for pretty printing an *instance* of ModelName
+  #     # label 'My model'              # Name of ModelName (smartly defaults to ActiveRecord's I18n API)
+  #     # label_plural 'My models'      # Same, plural
+  #     # weight 0                      # Navigation priority. Bigger is higher.
+    parent Survey             # Set parent model for navigation. MyModel will be nested below. OtherModel will be on first position of the dropdown
+  #     # navigation_label              # Sets dropdown entry's name in navigation. Only for parents!
+
+  #   # Section specific configuration:
+
+  #     list do
+  #       # filters [:id, :name]  # Array of field names which filters should be shown by default in the table header
+  #       # items_per_page 100    # Override default_items_per_page
+  #       # sort_by :id           # Sort column (default is primary key)
+  #       # sort_reverse true     # Sort direction (default is true for primary key, last created first)
+  #     end
+  #     show do; end
+  #     edit do; end
+  #     export do; end
+  #     # also see the create, update, modal and nested sections, which override edit in specific cases (resp. when creating, updating, modifying from another model in a popup modal or modifying from another model nested form)
+  #     # you can override a cross-section field configuration in any section with the same syntax `configure :field_name do ... end`
+  #     # using `field` instead of `configure` will exclude all other fields and force the ordering
+  end
+
+
+  ###  Survey  ###
+
+  config.model 'Survey' do
+
+  #   # You can copy this to a 'rails_admin do ... end' block inside your survey.rb model definition
+
+  #   # Found associations:
+
+    configure :edition, :belongs_to_association 
+    configure :default_question_group, :belongs_to_association 
+    configure :question_groups, :has_many_association 
+    # configure :questions, :has_many_association 
+
+  #   # Found columns:
+
+    field :id
+    field :edition
+    field :default_question_group
+  #     
+    field :question_groups do
+      orderable true
+    end
+
+  #   # Cross-section configuration:
 
   #     # object_label_method :name     # Name of the method called for pretty printing an *instance* of ModelName
   #     # label 'My model'              # Name of ModelName (smartly defaults to ActiveRecord's I18n API)
@@ -346,100 +462,6 @@ RailsAdmin.config do |config|
   #     # you can override a cross-section field configuration in any section with the same syntax `configure :field_name do ... end`
   #     # using `field` instead of `configure` will exclude all other fields and force the ordering
   end
-
-
-  ###  QuestionGroup  ###
-
-  # config.model 'QuestionGroup' do
-
-  #   # You can copy this to a 'rails_admin do ... end' block inside your question_group.rb model definition
-
-  #   # Found associations:
-
-  #     configure :survey, :belongs_to_association 
-  #     configure :questions, :has_many_association 
-
-  #   # Found columns:
-
-  #     configure :id, :integer 
-  #     configure :title, :string 
-  #     configure :virtual, :boolean 
-  #     configure :survey_id, :integer         # Hidden 
-  #     configure :position, :integer 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime 
-
-  #   # Cross-section configuration:
-
-  #     # object_label_method :name     # Name of the method called for pretty printing an *instance* of ModelName
-  #     # label 'My model'              # Name of ModelName (smartly defaults to ActiveRecord's I18n API)
-  #     # label_plural 'My models'      # Same, plural
-  #     # weight 0                      # Navigation priority. Bigger is higher.
-  #     # parent OtherModel             # Set parent model for navigation. MyModel will be nested below. OtherModel will be on first position of the dropdown
-  #     # navigation_label              # Sets dropdown entry's name in navigation. Only for parents!
-
-  #   # Section specific configuration:
-
-  #     list do
-  #       # filters [:id, :name]  # Array of field names which filters should be shown by default in the table header
-  #       # items_per_page 100    # Override default_items_per_page
-  #       # sort_by :id           # Sort column (default is primary key)
-  #       # sort_reverse true     # Sort direction (default is true for primary key, last created first)
-  #     end
-  #     show do; end
-  #     edit do; end
-  #     export do; end
-  #     # also see the create, update, modal and nested sections, which override edit in specific cases (resp. when creating, updating, modifying from another model in a popup modal or modifying from another model nested form)
-  #     # you can override a cross-section field configuration in any section with the same syntax `configure :field_name do ... end`
-  #     # using `field` instead of `configure` will exclude all other fields and force the ordering
-  # end
-
-
-  ###  Survey  ###
-
-  # config.model 'Survey' do
-
-  #   # You can copy this to a 'rails_admin do ... end' block inside your survey.rb model definition
-
-  #   # Found associations:
-
-  #     configure :edition, :belongs_to_association 
-  #     configure :default_question_group, :belongs_to_association 
-  #     configure :question_groups, :has_many_association 
-  #     configure :questions, :has_many_association 
-
-  #   # Found columns:
-
-  #     configure :id, :integer 
-  #     configure :edition_id, :integer         # Hidden 
-  #     configure :default_question_group_id, :integer         # Hidden 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime 
-
-  #   # Cross-section configuration:
-
-  #     # object_label_method :name     # Name of the method called for pretty printing an *instance* of ModelName
-  #     # label 'My model'              # Name of ModelName (smartly defaults to ActiveRecord's I18n API)
-  #     # label_plural 'My models'      # Same, plural
-  #     # weight 0                      # Navigation priority. Bigger is higher.
-  #     # parent OtherModel             # Set parent model for navigation. MyModel will be nested below. OtherModel will be on first position of the dropdown
-  #     # navigation_label              # Sets dropdown entry's name in navigation. Only for parents!
-
-  #   # Section specific configuration:
-
-  #     list do
-  #       # filters [:id, :name]  # Array of field names which filters should be shown by default in the table header
-  #       # items_per_page 100    # Override default_items_per_page
-  #       # sort_by :id           # Sort column (default is primary key)
-  #       # sort_reverse true     # Sort direction (default is true for primary key, last created first)
-  #     end
-  #     show do; end
-  #     edit do; end
-  #     export do; end
-  #     # also see the create, update, modal and nested sections, which override edit in specific cases (resp. when creating, updating, modifying from another model in a popup modal or modifying from another model nested form)
-  #     # you can override a cross-section field configuration in any section with the same syntax `configure :field_name do ... end`
-  #     # using `field` instead of `configure` will exclude all other fields and force the ordering
-  # end
 
 
   ###  User  ###

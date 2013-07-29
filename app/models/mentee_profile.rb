@@ -1,5 +1,6 @@
 class MenteeProfile < ActiveRecord::Base
-  attr_accessible :mentee_id, :edition_id, :mentee, :edition
+  attr_accessible :mentee_id, :edition_id, :mentee, :edition, 
+    :snapshot_state, :develop_state, :lifelist_state
   
   belongs_to :mentee
   belongs_to :edition
