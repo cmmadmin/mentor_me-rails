@@ -55,6 +55,7 @@ gem 'foreigner'
 
 # Bootstrap / Admin
 gem "twitter-bootstrap-rails"
+gem "safe_yaml", "0.6.3"
 gem 'rails_admin', '~> 0.4.9'
 gem 'rails_admin_nestable'
 
