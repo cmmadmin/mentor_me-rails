@@ -58,6 +58,7 @@ gem "twitter-bootstrap-rails"
 gem "safe_yaml", "0.6.3"
 gem 'rails_admin', '~> 0.4.9'
 gem 'rails_admin_nestable'
+gem "rails_admin_import", :git => "git://github.com/stephskardal/rails_admin_import.git"
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

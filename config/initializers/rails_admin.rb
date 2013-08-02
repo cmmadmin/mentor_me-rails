@@ -66,7 +66,7 @@ RailsAdmin.config do |config|
     delete
     history_show
     show_in_app
-
+    import
     # Add the nestable action for configured models
     nestable
   end
@@ -341,7 +341,6 @@ RailsAdmin.config do |config|
   #     configure :updated_at, :datetime 
 
   #   # Cross-section configuration:
-
     object_label_method :body     # Name of the method called for pretty printing an *instance* of ModelName
   #     # label 'My model'              # Name of ModelName (smartly defaults to ActiveRecord's I18n API)
   #     # label_plural 'My models'      # Same, plural
