@@ -1,0 +1,40 @@
+question_group,KVCS,Category Tagline,body,question_type
+Physical,(knowledge/character),How's your physical health?,The degree that I am always learning and keeping my mind sharp.,number
+Physical,(knowledge/character),How's your physical health?,The fitness and health of my body,number
+Physical,(knowledge/character),How's your physical health?,The degreee that I eat and rest well.,number
+Physical,(knowledge/character),How's your physical health?,The level of stress/anxiety/depression in my life,number
+Emotional,"(knowledge, vision, character)",How much do these influence or drive you?,Insecurities,number
+Emotional,"(knowledge, vision, character)",How much do these influence or drive you?,Fears,number
+Emotional,"(knowledge, vision, character)",How much do these influence or drive you?,Comfort,number
+Emotional,"(knowledge, vision, character)",How much do these influence or drive you?,Control,number
+Emotional,"(knowledge, vision, character)",How much do these influence or drive you?,Success,number
+Emotional,"(knowledge, vision, character)",How much do these influence or drive you?,Approval,number
+Spiritual,"(Knowledge, vision, character, skills)",How's your spiritual health?,Intimacy/walk/relationship with God,number
+Spiritual,"(Knowledge, vision, character, skills)",How's your spiritual health?,Sharing Jesus with Others,number
+Spiritual,"(Knowledge, character, skills)",How's your spiritual health?,Involvement with other beleivers & local church,number
+Spiritual,"(Knowledge, vision, character, skills)",How's your spiritual health?,"Living out God's global mission of ""making disciples of all nations""",number
+Spiritual,(Knowledge),How's your spiritual health?,Knowledge of Bible ,number
+Spiritual,"(Knowledge, vision, character, skills)",How's your spiritual health?,"Daily spirtual exercises/disciplines (bible reading, prayer, etc)",number
+Spiritual,"(Knowledge, character)",How's your spiritual health?,Christ like in character,number
+Spiritual,"(Knowledge, vision, character, skills)",How's your spiritual health?,Motivated to know Christ and make him known,number
+Spiritual,"(Knowledge, character)",How's your spiritual health?,"Dependence on God, faith in God in every area of life",number
+Spiritual,"(Knowledge, character)",How's your spiritual health?,Committment to obey Jesus in all things,number
+Finances,"(knowledge, character, skills)",How's your financial health?,Living on a budget,number
+Finances,"(knowledge, character, skills)",How's your financial health?,Savings and/or Retirement,number
+Finances,"(knowledge, character, skills)",How's your financial health?,Debt Level,number
+Finances,"(knowledge, vision, character, skills)",How's your financial health?,Generous giving,number
+Finances,"(knowledge, vision, character, skills)",How's your financial health?,Standard of living in light of income and the gospel,number
+Relationships (Friends),"(knowledge, vision, character, skills)",Who are you doing life with?,Deep relationships with a few other people,number
+Relationships (Friends),"(knowledge, vision, character)",Who are you doing life with?,Active in smaller community,number
+Relationships (Friends),"(knowledge, vision, character, skills)",Who are you doing life with?,Accountabilty to others,number
+Relationships (Friends),"(knowledge, vision, character, skills)",Who are you doing life with?,Mentors/Disciplers/Advisors investing in you,number
+Relationships (Friends),"(knowledge, vision, character, skills)",Who are you doing life with?,The degree that I am a life giving faithful friend to others,number
+Relationships (Romantic),"(knowledge, vision, character, skills)",How's your love life?,Understanding and living out godly convictions & boundaries,number
+Relationships (Romantic),"(knowledge, vision, character, skills)",How's your love life?,Understand and live out biblical marriage/dating principles,number
+Relationships (Romantic),"(knowledge, vision, character, skills)",How's your love life?,Understanding of biblical mandhood/womanhood.,number
+Relationships (Parents),"(knowledge, vision, character, skills)",How's your love life?,Relationships with parents and siblings,number
+Relationships (Parents),"(knowledge, vision, character, skills)",How's your love life?,Sense of blessing (vs woundedness),number
+Meaning/Purpose, (Vision),,To what degree to you feel                              fully alive and satisfied with you life?,number
+Meaning/Purpose, (Vision),,Sense of why you are here                           and live with that purpose,number
+Meaning/Purpose, (Vision),,Eternal Persepective on life,number
+Meaning/Purpose, (Vision),,"Investment of time, talents, treasure                  in Kingdom work",number

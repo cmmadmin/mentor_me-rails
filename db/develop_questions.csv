@@ -1,0 +1,8 @@
+body,question_type
+"When you consider the categories in the Self Assess (Intellectual, emotional, spiritual, financial, relational), which area needs the most attention and would be most strategic to go after? ",text
+"When you consider their core beliefs and values from the Explore, what 1-2 areas needs the most attention and would be most strategic to go after?",text
+"When you consider the LIfeList (Know, skills, vision, and character), what 3-5 areas needs the most attention and would be most strategic to go after? these would not be every item you checked but the top 3-5 for this semester/year.",LifeList Items,huge ,text
+"When you think of their connection to God, connection to God's people, and connection to God's mission, what area is least heathy?",text
+"In order for this student to take the next steps in their relationship with Christ, I would challenge them to:",text
+"Based on what you now know, what are the one or two biggest obstacles or issues in this persons life, that if they were healthy, would greatly impact every other area of there life.",Personal Development Issue (PDI),text
+"What one or two goals do you have this semester/year for each of these issues above, (be specific, mearsurable, doable, w/date)",goals for each PDI item,text

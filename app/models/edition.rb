@@ -19,4 +19,10 @@ class Edition < ActiveRecord::Base
   def self.default
     where(:code => "college").first
   end
+  def create_surveys
+    self.snapshot_self_assessment_survey = Survey.create(edition_id: self.id)
+    self.snapshot_interactive_survey = Survey.create(edition_id: self.id)
+    self.snapshot_observations_survey = Survey.create(edition_id: self.id)
+    self.develop_survey = Survey.create(edition_id: self.id)
+  end
 end

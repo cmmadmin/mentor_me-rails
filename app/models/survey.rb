@@ -6,4 +6,9 @@ class Survey < ActiveRecord::Base
   has_many :question_groups
   # has_one :default_group, where(virtual: true)
   has_many :questions, :through => :question_groups
+
+  def create_default_question_group
+    self.default_question_group = QuestionGroup.create(virtual: true, survey_id: self.id)
+    self.save()
+  end
 end
