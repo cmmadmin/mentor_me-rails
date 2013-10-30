@@ -4,6 +4,6 @@ class UsersController < ApplicationController
 	def data
 		current_user ||= User.first
 		@mentees = current_user.mentees.includes(:active_profile => :answers)
-		@editions = Edition.used_by_mentor(current_user).includes(:surveys => {:question_groups => :questions})
+		@editions = Edition.used_by_mentor(current_user).includes(:surveys => {:question_groups => :questions}, :lifelist => [:lifelist_items])
 	end
 end

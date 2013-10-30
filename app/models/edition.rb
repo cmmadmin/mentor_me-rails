@@ -7,6 +7,7 @@ class Edition < ActiveRecord::Base
   belongs_to :snapshot_interactive_survey, class_name: "Survey"
   belongs_to :snapshot_observations_survey, class_name: "Survey"
   belongs_to :develop_survey, class_name: "Survey"
+  has_one :lifelist
 
   has_many :surveys
   has_many :mentee_profiles
@@ -24,5 +25,10 @@ class Edition < ActiveRecord::Base
     self.snapshot_interactive_survey = Survey.create(edition_id: self.id)
     self.snapshot_observations_survey = Survey.create(edition_id: self.id)
     self.develop_survey = Survey.create(edition_id: self.id)
+    self.save()
+  end
+  def create_lifelist
+    self.lifelist = Lifelist.create(edition_id: self.id)
+    self.save()
   end
 end
