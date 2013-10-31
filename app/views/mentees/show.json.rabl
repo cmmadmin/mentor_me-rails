@@ -9,5 +9,8 @@ if locals[:show_profile]
 	  child :answers, :object_root => false do
 	  	attributes :id, :text_value, :number_value, :boolean_value, :mentee_profile_id, :question_id, :created_at, :updated_at
 	  end
+    child :lifelist_picks, :object_root => false do
+      attributes :id, :mentee_profile_id, :lifelist_item_id
+    end
 	end
 end
