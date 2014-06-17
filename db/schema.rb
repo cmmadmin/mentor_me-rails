@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131030191750) do
+ActiveRecord::Schema.define(:version => 20140616212824) do
 
   create_table "answers", :force => true do |t|
     t.text     "text_value"
@@ -24,6 +24,46 @@ ActiveRecord::Schema.define(:version => 20131030191750) do
     t.datetime "updated_at",        :null => false
   end
 
+  create_table "develop_categories", :force => true do |t|
+    t.string "title", :null => false
+  end
+
+  create_table "develop_curriculums", :force => true do |t|
+    t.string  "type",      :null => false
+    t.integer "parent_id"
+  end
+
+  create_table "develop_custom_items", :force => true do |t|
+    t.integer "mentee_profile_id", :null => false
+    t.string  "title",             :null => false
+    t.text    "description"
+  end
+
+  create_table "develop_goal_picks", :force => true do |t|
+    t.integer "mentee_profile_id", :null => false
+    t.integer "develop_goal_id",   :null => false
+  end
+
+  create_table "develop_goals", :force => true do |t|
+    t.integer "develop_curriculum_id", :null => false
+    t.integer "develop_category_id",   :null => false
+    t.string  "title",                 :null => false
+    t.text    "description"
+  end
+
+  create_table "develop_item_picks", :force => true do |t|
+    t.integer "mentee_profile_id", :null => false
+    t.integer "develop_item_id",   :null => false
+  end
+
+  create_table "develop_items", :force => true do |t|
+    t.integer "develop_curriculum_id", :null => false
+    t.integer "develop_goal_id",       :null => false
+    t.string  "title",                 :null => false
+    t.text    "description"
+    t.string  "link_url"
+  end
+
   create_table "editions", :force => true do |t|
     t.string   "name",                               :null => false
     t.string   "code",                               :null => false
@@ -31,10 +71,10 @@ ActiveRecord::Schema.define(:version => 20131030191750) do
     t.integer  "snapshot_self_assessment_survey_id"
     t.integer  "snapshot_interactive_survey_id"
     t.integer  "snapshot_observations_survey_id"
-    t.integer  "develop_survey_id"
-    t.integer  "life_list_id"
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
+    t.integer  "develop_goals_curriculum_id"
+    t.integer  "develop_items_curriculum_id"
   end
 
   create_table "journal_entries", :force => true do |t|
@@ -45,32 +85,12 @@ ActiveRecord::Schema.define(:version => 20131030191750) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "lifelist_categories", :force => true do |t|
-    t.string "title"
-  end
-
-  create_table "lifelist_items", :force => true do |t|
-    t.string  "title"
-    t.integer "lifelist_id"
-    t.integer "lifelist_category_id"
-  end
-
-  create_table "lifelist_picks", :force => true do |t|
-    t.integer "mentee_profile_id"
-    t.integer "lifelist_item_id"
-  end
-
-  create_table "lifelists", :force => true do |t|
-    t.integer "edition_id"
-  end
-
   create_table "mentee_profiles", :force => true do |t|
     t.integer  "edition_id",     :null => false
     t.integer  "mentee_id",      :null => false
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
     t.string   "snapshot_state"
-    t.string   "develop_state"
     t.string   "lifelist_state"
   end
 
@@ -151,17 +171,24 @@ ActiveRecord::Schema.define(:version => 20131030191750) do
   add_foreign_key "answers", "mentee_profiles", :name => "answers_mentee_profile_id_fk"
   add_foreign_key "answers", "questions", :name => "answers_question_id_fk"
 
-  add_foreign_key "editions", "surveys", :name => "develop_survey_foreign_key", :column => "develop_survey_id"
+  add_foreign_key "develop_custom_items", "mentee_profiles", :name => "develop_custom_items_mentee_profile_id_fk"
+
+  add_foreign_key "develop_goal_picks", "develop_goals", :name => "develop_goal_picks_develop_goal_id_fk"
+  add_foreign_key "develop_goal_picks", "mentee_profiles", :name => "develop_goal_picks_mentee_profile_id_fk"
+
+  add_foreign_key "develop_goals", "develop_categories", :name => "develop_goals_develop_category_id_fk"
+  add_foreign_key "develop_goals", "develop_curriculums", :name => "develop_goals_develop_curriculum_id_fk"
+
+  add_foreign_key "develop_item_picks", "develop_items", :name => "develop_item_picks_develop_item_id_fk"
+  add_foreign_key "develop_item_picks", "mentee_profiles", :name => "develop_item_picks_mentee_profile_id_fk"
+
+  add_foreign_key "develop_items", "develop_curriculums", :name => "develop_items_develop_curriculum_id_fk"
+  add_foreign_key "develop_items", "develop_goals", :name => "develop_items_develop_goal_id_fk"
+
+  add_foreign_key "editions", "develop_curriculums", :name => "editions_develop_goals_curriculum_foreign_key", :column => "develop_goals_curriculum_id"
+  add_foreign_key "editions", "develop_curriculums", :name => "editions_develop_items_curriculum_foreign_key", :column => "develop_items_curriculum_id"
   add_foreign_key "editions", "surveys", :name => "edition_interactive_survey_foreign_key", :column => "snapshot_interactive_survey_id"
   add_foreign_key "editions", "surveys", :name => "edition_observations_survey_foreign_key", :column => "snapshot_observations_survey_id"
   add_foreign_key "editions", "surveys", :name => "edition_self_assessment_survey_foreign_key", :column => "snapshot_self_assessment_survey_id"
-
-  add_foreign_key "lifelist_items", "lifelist_categories", :name => "lifelist_items_lifelist_category_id_fk"
-  add_foreign_key "lifelist_items", "lifelists", :name => "lifelist_items_lifelist_id_fk"
-
-  add_foreign_key "lifelist_picks", "lifelist_items", :name => "lifelist_picks_lifelist_item_id_fk"
-  add_foreign_key "lifelist_picks", "mentee_profiles", :name => "lifelist_picks_mentee_profile_id_fk"
-
-  add_foreign_key "lifelists", "editions", :name => "lifelists_edition_id_fk"
 
 end

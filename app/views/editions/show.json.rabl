@@ -1,7 +1,6 @@
 object @edition
 attributes :id, :name, :code, :snapshot_interactive_survey_id, 
-                  :snapshot_self_assessment_survey_id, :snapshot_observations_survey_id,
-                  :develop_survey_id
+                  :snapshot_self_assessment_survey_id, :snapshot_observations_survey_id
 
 if locals[:show_questions]
   child :surveys, :object_root => false do

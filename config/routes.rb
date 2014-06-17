@@ -15,7 +15,6 @@ MentorMeRails::Application.routes.draw do
       resources :journal_entries
       resources :mentee_profiles do
         resources :answers
-        resources :lifelist_picks
       end
     end
     resources :editions do
@@ -26,8 +25,6 @@ MentorMeRails::Application.routes.draw do
       end
     end
   end
-
-  resources :lifelists
 
   # resources :mentees
   # resources :journal_entries

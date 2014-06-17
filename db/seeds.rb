@@ -54,9 +54,9 @@ CSV.foreach(develop_path, headers: true) do |row|
   Question.where(body: hash['body'], question_type: hash['question_type'], question_group_id: edition.develop_survey.default_question_group.id).first_or_create
 end
 
-CSV.foreach(lifelist_path, headers: true) do |row|
-  hash = row.to_hash
-  hash.keep_if{|key, value| %w(category title).include? key}
-  category = LifelistCategory.where(title: hash['category']).first_or_create
-  LifelistItem.where(title: hash['title'], lifelist_id: edition.lifelist, lifelist_category_id: category.id).first_or_create
-end 
+# CSV.foreach(lifelist_path, headers: true) do |row|
+#   hash = row.to_hash
+#   hash.keep_if{|key, value| %w(category title).include? key}
+#   category = LifelistCategory.where(title: hash['category']).first_or_create
+#   LifelistItem.where(title: hash['title'], lifelist_id: edition.lifelist, lifelist_category_id: category.id).first_or_create
+# end 

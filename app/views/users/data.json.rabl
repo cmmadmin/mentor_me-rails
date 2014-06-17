@@ -10,15 +10,27 @@ node(:editions) do
   end
 end
 
-node(:lifelists) do
-  @editions.map do |edition|
-    partial 'lifelists/show', :object => edition.lifelist
+node(:develop_categories) do
+  @develop_categories.map do |category|
+    partial 'develop_categories/show', :object => category
   end
 end
 
-node(:lifelist_categories) do
-  LifelistCategory.all
+node(:develop_curriculums) do
+  @curriculums.map do |curriculum|
+    partial 'curriculums/show', :object => curriculum
+  end
 end
+
+# node(:lifelists) do
+#   @editions.map do |edition|
+#     partial 'lifelists/show', :object => edition.lifelist
+#   end
+# end
+
+# node(:lifelist_categories) do
+#   LifelistCategory.all
+# end
 
 
 # this.mentees.reset(<%= j render(template: 'mentees/index', 

@@ -6,11 +6,12 @@ class Edition < ActiveRecord::Base
   belongs_to :snapshot_self_assessment_survey, class_name: "Survey"
   belongs_to :snapshot_interactive_survey, class_name: "Survey"
   belongs_to :snapshot_observations_survey, class_name: "Survey"
-  belongs_to :develop_survey, class_name: "Survey"
-  has_one :lifelist
 
   has_many :surveys
   has_many :mentee_profiles
+
+  belongs_to :develop_goals_curriculum
+  belongs_to :develop_items_curriculum
 
   def self.used_by_mentor mentor
     joins(:mentee_profiles => :mentee).
@@ -24,11 +25,6 @@ class Edition < ActiveRecord::Base
     self.snapshot_self_assessment_survey = Survey.create(edition_id: self.id)
     self.snapshot_interactive_survey = Survey.create(edition_id: self.id)
     self.snapshot_observations_survey = Survey.create(edition_id: self.id)
-    self.develop_survey = Survey.create(edition_id: self.id)
-    self.save()
-  end
-  def create_lifelist
-    self.lifelist = Lifelist.create(edition_id: self.id)
     self.save()
   end
 end

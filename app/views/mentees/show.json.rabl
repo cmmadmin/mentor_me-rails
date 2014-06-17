@@ -5,12 +5,15 @@ node(:avatar_thumb_url){|m| m.avatar_url(:thumb)}
 
 if locals[:show_profile]
 	child :active_profile => :active_profile do
-	  attributes :id, :mentee_id, :edition_id, :snapshot_state, :develop_state, :lifelist_state, :created_at, :updated_at
+	  attributes :id, :mentee_id, :edition_id, :snapshot_state, :created_at, :updated_at
 	  child :answers, :object_root => false do
 	  	attributes :id, :text_value, :number_value, :boolean_value, :mentee_profile_id, :question_id, :created_at, :updated_at
 	  end
-    child :lifelist_picks, :object_root => false do
-      attributes :id, :mentee_profile_id, :lifelist_item_id
+    child :develop_goal_picks, :object_root => false do
+      attributes :id, :mentee_profile_id, :develop_goal_id
+    end
+    child :develop_item_picks, :object_root => false do
+      attributes :id, :mentee_profile_id, :develop_item_id
     end
 	end
 end

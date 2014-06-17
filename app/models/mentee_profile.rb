@@ -1,11 +1,15 @@
 class MenteeProfile < ActiveRecord::Base
   attr_accessible :mentee_id, :edition_id, :mentee, :edition, 
-    :snapshot_state, :develop_state, :lifelist_state
+    :snapshot_state
   
   belongs_to :mentee
   belongs_to :edition
-  has_many :lifelist_picks
-  has_many :lifelist_items, through: :lifelist_picks
+
+  has_many :develop_goal_picks
+  has_many :develop_goals, through: :develop_goal_picks
+
+  has_many :develop_item_picks
+  has_many :develop_items, through: :develop_item_picks
 
   has_many :answers
 
