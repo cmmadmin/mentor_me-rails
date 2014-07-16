@@ -11,12 +11,14 @@ require 'csv'
 selfassess_path = File.expand_path("../self_assess_questions.csv", __FILE__)
 interactive_qa_path = File.expand_path("../interactive_qa_questions.csv", __FILE__)
 observe_path = File.expand_path("../observe_questions.csv", __FILE__)
-develop_path = File.expand_path("../develop_questions.csv", __FILE__)
 lifelist_path = File.expand_path("../lifelist.csv", __FILE__)
+curriculum_path = File.expand_path("../curriculum.tsv", __FILE__)
+
 
 edition = Edition.where(name: 'CMT College Edition', code: 'college').first_or_create
 edition.create_surveys
 edition.create_lifelist
+edition.create_curriculums
 
 selfAssessGroups = %w(Physical Emotional Spiritual Finances)
 selfAssessGroups += ["Relationships (Friends)", "Relationships (Romantic)", "Relationships (Parents)"]
@@ -27,7 +29,6 @@ end
 
 edition.snapshot_interactive_survey.create_default_question_group
 edition.snapshot_observations_survey.create_default_question_group
-edition.develop_survey.create_default_question_group
 
 CSV.foreach(selfassess_path, headers: true) do |row|
   hash = row.to_hash
@@ -48,10 +49,27 @@ CSV.foreach(observe_path, headers: true) do |row|
   Question.where(body: hash['body'], question_type: hash['question_type'], question_group_id: edition.snapshot_observations_survey.default_question_group.id).first_or_create
 end
 
-CSV.foreach(develop_path, headers: true) do |row|
-  hash = row.to_hash
-  hash.keep_if{|key, value| %w(body question_type).include? key}
-  Question.where(body: hash['body'], question_type: hash['question_type'], question_group_id: edition.develop_survey.default_question_group.id).first_or_create
+
+item = {}
+goals_curriculum = edition.develop_goals_curriculum
+items_curriculum = edition.develop_items_curriculum
+develop_category = develop_goal = develop_item = nil
+CSV.foreach(curriculum_path, {headers: [:category, :goal_title, :goal_description, :item_title, :item_description, :item_link], col_sep: "\t", skip_blanks: true}) do |row|
+  next if $. == 1 # Skip header line
+  # Incorporate any values that have changed
+  item_hash = row.to_hash.delete_if{|k,v| v.nil?}
+  item = item_hash.reverse_merge item
+  
+  develop_category = DevelopCategory.find_or_create_by_title(item[:category]) if item_hash[:category]
+  
+  if item_hash[:goal_title]
+    develop_goal = DevelopGoal.create!(title: item[:goal_title], description: item[:goal_description], develop_category: develop_category, develop_curriculum: goals_curriculum) 
+  end
+
+  if item_hash[:item_title]
+    develop_item = DevelopItem.create!(title: item[:item_title], description: item[:item_description], link_url: item[:item_link],
+        develop_goal: develop_goal, develop_curriculum: items_curriculum)
+  end
 end
 
 # CSV.foreach(lifelist_path, headers: true) do |row|

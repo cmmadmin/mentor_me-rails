@@ -27,4 +27,9 @@ class Edition < ActiveRecord::Base
     self.snapshot_observations_survey = Survey.create(edition_id: self.id)
     self.save()
   end
+  def create_curriculums
+    self.develop_goals_curriculum = DevelopGoalsCurriculum.create()
+    self.develop_items_curriculum = DevelopItemsCurriculum.create()
+    self.save()
+  end
 end
