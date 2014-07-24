@@ -3,7 +3,10 @@ MentorMeRails::Application.routes.draw do
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   mount RailsAdminImport::Engine => '/rails_admin_import', :as => 'rails_admin_import'
 
-  devise_for :users
+  devise_for :users, path_names: {
+    sign_in: 'session',
+    sign_out: 'session'
+  }
 
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
