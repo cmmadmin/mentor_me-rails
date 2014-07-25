@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140723221326) do
+ActiveRecord::Schema.define(:version => 20140725021155) do
 
   create_table "answers", :force => true do |t|
     t.text     "text_value"
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(:version => 20140723221326) do
   create_table "develop_items", :force => true do |t|
     t.integer "develop_curriculum_id", :null => false
     t.integer "develop_goal_id",       :null => false
-    t.string  "title",                 :null => false
+    t.string  "label"
     t.text    "description"
     t.string  "link_url"
   end
@@ -169,6 +169,9 @@ ActiveRecord::Schema.define(:version => 20140723221326) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  add_foreign_key "answers", "mentee_profiles", :name => "answers_mentee_profile_id_fk"
+  add_foreign_key "answers", "questions", :name => "answers_question_id_fk"
 
   add_foreign_key "develop_custom_items", "mentee_profiles", :name => "develop_custom_items_mentee_profile_id_fk"
 

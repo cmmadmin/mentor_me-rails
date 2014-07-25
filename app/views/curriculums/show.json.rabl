@@ -7,5 +7,5 @@ child :develop_goals, :object_root => false, :if => lambda {|c| c.type == 'Devel
 end
 
 child :develop_items, :object_root => false, :if => lambda {|c| c.type == 'DevelopItemsCurriculum'} do
-  attributes :id, :develop_curriculum_id, :develop_goal_id, :title, :description, :link_url
+  attributes :id, :develop_curriculum_id, :develop_goal_id, :label, :description, :link_url
 end
