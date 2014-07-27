@@ -17,7 +17,6 @@ curriculum_path = File.expand_path("../curriculum.tsv", __FILE__)
 
 edition = Edition.where(name: 'CMT College Edition', code: 'college').first_or_create
 edition.create_surveys
-edition.create_lifelist
 edition.create_curriculums
 
 selfAssessGroups = %w(Physical Emotional Spiritual Finances)
