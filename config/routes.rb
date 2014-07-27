@@ -6,7 +6,7 @@ MentorMeRails::Application.routes.draw do
   devise_for :users, path_names: {
     sign_in: 'session',
     sign_out: 'session'
-  }
+  }, controllers: {sessions: 'sessions'}
 
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'

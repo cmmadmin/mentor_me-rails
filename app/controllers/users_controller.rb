@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	# before_filter :authenticate_user!
+	before_filter :authenticate_user!
 	# TODO: Add authorization to make sure only this user can get bootstrap data
 	def data
 		# current_user ||= User.first

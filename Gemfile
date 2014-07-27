@@ -29,7 +29,7 @@ gem 'oj'
 gem 'multi_json'
 
 # Authentication and Authorization
-gem 'devise', '2.1.0'
+gem 'devise', '2.2.8'
 gem 'rack-cors', :require => 'rack/cors'
 
 # File Processing
