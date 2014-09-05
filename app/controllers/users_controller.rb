@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 	# TODO: Add authorization to make sure only this user can get bootstrap data
 	def data
 		# current_user ||= User.first
+    @user = current_user 
 		@mentees = current_user.mentees.includes(:active_profile => :answers)
 		@editions = Edition.used_by_mentor(current_user).includes(:surveys => {:question_groups => :questions})
     curriculum_ids = @editions.map{|e| [e.develop_goals_curriculum_id, e.develop_items_curriculum_id]}.flatten.compact

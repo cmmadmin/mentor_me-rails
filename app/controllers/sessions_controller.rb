@@ -22,7 +22,7 @@ class SessionsController < Devise::SessionsController
           logger.info("User #{email} failed signin, password is invalid")
           render :status=>401, :json=>{:message=>"Invalid email or password."}
         else
-          respond_with @user, status: :created
+          render json: {auth_token: @user.authentication_token}, status: :created
         end
       end
     end

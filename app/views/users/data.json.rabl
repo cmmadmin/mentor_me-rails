@@ -1,3 +1,7 @@
+node(:current_user) do
+  partial 'sessions/create', :object => @user
+end
+
 node(:mentees) do
   @mentees.map do |mentee|
     partial 'mentees/show', :object => mentee, :locals => {:show_profile => true}
