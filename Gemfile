@@ -60,6 +60,9 @@ gem 'rails_admin', '~> 0.4.9'
 gem 'rails_admin_nestable'
 gem "rails_admin_import", :git => "git://github.com/stephskardal/rails_admin_import.git"
 
+# Use unicorn as the app server
+gem 'unicorn'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
@@ -72,9 +75,7 @@ gem "rails_admin_import", :git => "git://github.com/stephskardal/rails_admin_imp
 # To use debugger
 # gem 'debugger'
 
-group :development do
-  # Use unicorn as the app server
-  gem 'unicorn'
+group :development do  
   # Unicorn rack handler for rails s
   gem 'hooves'
 

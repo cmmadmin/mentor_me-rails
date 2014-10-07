@@ -4,9 +4,9 @@ defaults: &defaults
   adapter: postgresql
   encoding: utf8
   reconnect: false
-  username: mentorme
-  password: mentorme
-  host: <%= ENV['DB_PORT_5432_TCP_ADDR'] %>
+  username: <%= ENV['DB_USER'] %>
+  password: <%= ENV['DB_PASS'] %>
+  host: <%= ENV['DB_HOST_ADDR'] %>
 
 development:
   <<: *defaults
