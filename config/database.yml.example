@@ -21,4 +21,4 @@ test:
 
 production:
   <<: *defaults
-  database: mentor_me
+  database: mentorme
