@@ -57,5 +57,9 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
+  # 
+  def url(options={})
+    super.split("?v=")[0]+"?v=#{model.updated_at.to_time.to_i}" rescue super
+  end
 
 end
