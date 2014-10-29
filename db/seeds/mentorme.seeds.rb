@@ -60,6 +60,7 @@ CSV.foreach(curriculum_path, {headers: [:category, :goal_title, :goal_descriptio
   item = item_hash.reverse_merge item
   
   develop_category = DevelopCategory.find_or_create_by_title(item[:category]) if item_hash[:category]
+  develop_category.update(edition_id: edition.id)
   
   if item_hash[:goal_title]
     develop_goal = DevelopGoal.create!(title: item[:goal_title], description: item[:goal_description], develop_category: develop_category, develop_curriculum: goals_curriculum) 

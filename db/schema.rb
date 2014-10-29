@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140725233351) do
+ActiveRecord::Schema.define(:version => 20141029200030) do
 
   create_table "answers", :force => true do |t|
     t.text     "text_value"
@@ -25,7 +25,8 @@ ActiveRecord::Schema.define(:version => 20140725233351) do
   end
 
   create_table "develop_categories", :force => true do |t|
-    t.string "title", :null => false
+    t.string  "title",      :null => false
+    t.integer "edition_id"
   end
 
   create_table "develop_curriculums", :force => true do |t|
@@ -174,6 +175,8 @@ ActiveRecord::Schema.define(:version => 20140725233351) do
 
   add_foreign_key "answers", "mentee_profiles", :name => "answers_mentee_profile_id_fk"
   add_foreign_key "answers", "questions", :name => "answers_question_id_fk"
+
+  add_foreign_key "develop_categories", "editions", :name => "develop_categories_edition_id_fk"
 
   add_foreign_key "develop_custom_items", "mentee_profiles", :name => "develop_custom_items_mentee_profile_id_fk"
 

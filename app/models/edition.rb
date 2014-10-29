@@ -10,6 +10,8 @@ class Edition < ActiveRecord::Base
   has_many :surveys
   has_many :mentee_profiles
 
+  has_many :develop_categories
+
   belongs_to :develop_goals_curriculum
   belongs_to :develop_items_curriculum
 

@@ -53,6 +53,8 @@ gem 'acts_as_list'
 gem 'pg'
 gem 'foreigner'
 
+gem 'seedbank'
+
 # Bootstrap / Admin
 gem "twitter-bootstrap-rails"
 gem "safe_yaml", "0.6.3"
