@@ -1,4 +1,4 @@
-FROM registry.thecmm.net:5000/ruby-1.9.3:latest
+FROM tech.thecmm.net:5000/ruby-1.9.3:latest
 MAINTAINER paul@thestrongfamily.org
 
 # RUN ln -sf /proc/self/fd /dev/fd
