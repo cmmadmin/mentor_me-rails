@@ -122,57 +122,67 @@ RailsAdmin.config do |config|
 
   ###  Edition  ###
 
-  # config.model 'Edition' do
+  config.model 'Edition' do
 
-  #   # You can copy this to a 'rails_admin do ... end' block inside your edition.rb model definition
+    # You can copy this to a 'rails_admin do ... end' block inside your edition.rb model definition
 
-  #   # Found associations:
+    # Found associations:
 
-  #     configure :snapshot_self_assessment_survey, :belongs_to_association 
-  #     configure :snapshot_interactive_survey, :belongs_to_association 
-  #     configure :snapshot_observations_survey, :belongs_to_association 
-  #     configure :develop_survey, :belongs_to_association 
-  #     configure :surveys, :has_many_association 
-  #     configure :mentee_profiles, :has_many_association 
+      configure :snapshot_self_assessment_survey, :belongs_to_association 
+      configure :snapshot_interactive_survey, :belongs_to_association 
+      configure :snapshot_observations_survey, :belongs_to_association 
+      configure :develop_survey, :belongs_to_association 
+      configure :surveys, :has_many_association 
+      configure :mentee_profiles, :has_many_association 
 
-  #   # Found columns:
+    # Found columns:
 
-  #     configure :id, :integer 
-  #     configure :name, :string 
-  #     configure :code, :string 
-  #     configure :revision, :integer 
-  #     configure :snapshot_self_assessment_survey_id, :integer         # Hidden 
-  #     configure :snapshot_interactive_survey_id, :integer         # Hidden 
-  #     configure :snapshot_observations_survey_id, :integer         # Hidden 
-  #     configure :develop_survey_id, :integer         # Hidden 
-  #     configure :life_list_id, :integer 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime 
+      configure :id, :integer 
+      configure :name, :string 
+      configure :code, :string 
+      configure :revision, :integer 
+      # configure :snapshot_self_assessment_survey_id, :integer         # Hidden 
+      # configure :snapshot_interactive_survey_id, :integer         # Hidden 
+      # configure :snapshot_observations_survey_id, :integer         # Hidden 
+      # configure :develop_survey_id, :integer         # Hidden 
+      configure :created_at, :datetime 
+      configure :updated_at, :datetime 
 
-  #   # Cross-section configuration:
+      field :id
+      field :name
+      field :code
+      field :revision
+      field :snapshot_self_assessment_survey_id        # Hidden 
+      field :snapshot_interactive_survey_id        # Hidden 
+      field :snapshot_observations_survey_id
+      field :surveys do
+        orderable true
+      end
 
-  #     # object_label_method :name     # Name of the method called for pretty printing an *instance* of ModelName
-  #     # label 'My model'              # Name of ModelName (smartly defaults to ActiveRecord's I18n API)
-  #     # label_plural 'My models'      # Same, plural
-  #     # weight 0                      # Navigation priority. Bigger is higher.
-  #     # parent OtherModel             # Set parent model for navigation. MyModel will be nested below. OtherModel will be on first position of the dropdown
-  #     # navigation_label              # Sets dropdown entry's name in navigation. Only for parents!
+    # Cross-section configuration:
 
-  #   # Section specific configuration:
+      # object_label_method :name     # Name of the method called for pretty printing an *instance* of ModelName
+      # label 'My model'              # Name of ModelName (smartly defaults to ActiveRecord's I18n API)
+      # label_plural 'My models'      # Same, plural
+      # weight 0                      # Navigation priority. Bigger is higher.
+      # parent OtherModel             # Set parent model for navigation. MyModel will be nested below. OtherModel will be on first position of the dropdown
+      # navigation_label              # Sets dropdown entry's name in navigation. Only for parents!
 
-  #     list do
-  #       # filters [:id, :name]  # Array of field names which filters should be shown by default in the table header
-  #       # items_per_page 100    # Override default_items_per_page
-  #       # sort_by :id           # Sort column (default is primary key)
-  #       # sort_reverse true     # Sort direction (default is true for primary key, last created first)
-  #     end
-  #     show do; end
-  #     edit do; end
-  #     export do; end
-  #     # also see the create, update, modal and nested sections, which override edit in specific cases (resp. when creating, updating, modifying from another model in a popup modal or modifying from another model nested form)
-  #     # you can override a cross-section field configuration in any section with the same syntax `configure :field_name do ... end`
-  #     # using `field` instead of `configure` will exclude all other fields and force the ordering
-  # end
+    # Section specific configuration:
+
+      # list do
+      #   # filters [:id, :name]  # Array of field names which filters should be shown by default in the table header
+      #   # items_per_page 100    # Override default_items_per_page
+      #   # sort_by :id           # Sort column (default is primary key)
+      #   # sort_reverse true     # Sort direction (default is true for primary key, last created first)
+      # end
+      # show do; end
+      # edit do; end
+      # export do; end
+      # also see the create, update, modal and nested sections, which override edit in specific cases (resp. when creating, updating, modifying from another model in a popup modal or modifying from another model nested form)
+      # you can override a cross-section field configuration in any section with the same syntax `configure :field_name do ... end`
+      # using `field` instead of `configure` will exclude all other fields and force the ordering
+  end
 
 
   ###  JournalEntry  ###
@@ -378,7 +388,9 @@ RailsAdmin.config do |config|
 
   #   # Found columns:
 
-    field :id
+    field :id do
+      read_only true
+    end
     field :title
     field :virtual
     field :survey
@@ -417,7 +429,7 @@ RailsAdmin.config do |config|
   ###  Survey  ###
 
   config.model 'Survey' do
-
+    # nestable_list true
   #   # You can copy this to a 'rails_admin do ... end' block inside your survey.rb model definition
 
   #   # Found associations:
@@ -432,6 +444,8 @@ RailsAdmin.config do |config|
     field :id
     field :edition
     field :default_question_group
+    field :position
+    field :title
   #     
     field :question_groups do
       orderable true

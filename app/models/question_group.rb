@@ -6,4 +6,6 @@ class QuestionGroup < ActiveRecord::Base
 
   acts_as_list scope: :survey
 
+  strip_attributes :only => :text_value
+
 end

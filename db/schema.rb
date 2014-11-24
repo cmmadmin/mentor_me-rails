@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141029200030) do
+ActiveRecord::Schema.define(:version => 20141118192127) do
 
   create_table "answers", :force => true do |t|
     t.text     "text_value"
@@ -144,6 +144,8 @@ ActiveRecord::Schema.define(:version => 20141029200030) do
     t.integer  "default_question_group_id"
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
+    t.string   "title"
+    t.integer  "position"
   end
 
   create_table "testings", :force => true do |t|
