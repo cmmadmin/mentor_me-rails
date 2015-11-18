@@ -1,5 +1,5 @@
-FROM tech.thecmm.net:5000/ruby-1.9.3:latest
-MAINTAINER paul@thestrongfamily.org
+FROM cmmadmin/ruby-1.9.3:latest
+MAINTAINER admin@mobilization.org
 
 # RUN ln -sf /proc/self/fd /dev/fd
 
